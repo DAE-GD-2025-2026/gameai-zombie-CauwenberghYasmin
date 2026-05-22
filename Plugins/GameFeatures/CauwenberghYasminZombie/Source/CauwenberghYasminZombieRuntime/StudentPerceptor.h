@@ -20,6 +20,14 @@ public:
 	UStudentPerceptor();
 	
 	virtual void BeginPlay() override;
+	UPROPERTY(VisibleAnywhere, Category = "AI Perception Look")
+	UAISenseConfig_Sight* SightConfig;
+	
+	UPROPERTY(VisibleAnywhere, Category = "AI Perception Component")
+	UAIPerceptionComponent* PerceptionComponent;
+	
+	UPROPERTY(VisibleAnywhere, Category = "AI Perception Feel")
+	UAISenseConfig_Damage* DamageConfig; //when zonbie touch from behind (HAHA)
 
 	UFUNCTION()
 	virtual void OnPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus);
