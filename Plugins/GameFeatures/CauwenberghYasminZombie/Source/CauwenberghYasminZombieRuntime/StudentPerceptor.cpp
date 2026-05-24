@@ -23,18 +23,18 @@ UStudentPerceptor::UStudentPerceptor()
 		SightConfig->DetectionByAffiliation.bDetectNeutrals = true;
 
 		// Assign the configuration to the perception component
-		auto PerceptionComp = GetOwner()->GetComponentByClass<UAIPerceptionComponent>();
-		PerceptionComp->ConfigureSense(*SightConfig);
-		//PerceptionComp->SetDominantSense(SightConfig->GetSenseImplementation());	//make feeling dominant, (being attacked > seeing smth? (depends on what they saw no?))
+		//auto PerceptionComp = GetOwner()->GetComponentByClass<UAIPerceptionComponent>();
+		//PerceptionComp->ConfigureSense(*SightConfig);
+		
 	}
 	
 	if (DamageConfig)
 	{
 		//DamageConfig->Set
 		
-		auto PerceptionComp = GetOwner()->GetComponentByClass<UAIPerceptionComponent>();
-		PerceptionComp->ConfigureSense(*SightConfig);
-		PerceptionComp->SetDominantSense(DamageConfig->GetSenseImplementation());
+		//auto PerceptionComp = GetOwner()->GetComponentByClass<UAIPerceptionComponent>();
+		//PerceptionComp->ConfigureSense(*SightConfig);
+		//PerceptionComp->SetDominantSense(DamageConfig->GetSenseImplementation());
 	}
 }
 
@@ -55,7 +55,7 @@ void UStudentPerceptor::OnPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 	
 	//check what was sensed/what sense it used!!
 	//-> then update the black board (?), some other model will do the decision making!
-	if (Stimulus.WasSuccessfullySensed())
+	if (Stimulus.WasSuccessfullySensed())												//WILL DO ALL THE SENSING HERE 
 	{
 		if ( ABaseZombie * SensedZombie = Cast<ABaseZombie>(Actor))
 		{
