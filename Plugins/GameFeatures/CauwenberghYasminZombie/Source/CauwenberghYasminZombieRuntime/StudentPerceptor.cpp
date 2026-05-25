@@ -67,7 +67,7 @@ void UStudentPerceptor::BeginPlay()
 	}
 }
 
-void UStudentPerceptor::OnPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)			//use ForgetAll () if it's inside a purge zone!!
+void UStudentPerceptor::OnPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 {
 	GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Green, 
 	FString::Printf(TEXT("Saw Something!")));
@@ -96,6 +96,7 @@ void UStudentPerceptor::OnPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 			//SensedZombie->zombietype
 			blackBoard->SetValueAsObject(FName("TargetZombie"), SensedZombie); //if more than one zombie, pick shotgun (more bullets)
 		}
+	
 		
 		//making items seperate so the ai doesn't go and pick up trash
 		if (AFood* SensedFood = Cast<AFood>(Actor))
@@ -124,4 +125,17 @@ void UStudentPerceptor::OnPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 		}
 	}
 	
+	//we'll have to check if health is going down
+	//make service checking if health changing
+	//change boolean in the blackboard?
+    
+	// FAISenseID DamageSenseID = UAISense::GetSenseID<UAISense_Damage>();
+	// if (Stimulus.Type == DamageSenseID)
+	// {
+	// 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("attackFromBehind"));
+	// 	if (blackBoard)
+	// 	{
+	// 		blackBoard->SetValueAsObject(FName("TargetZombie"), Actor);
+	// 	}
+	// }
 }

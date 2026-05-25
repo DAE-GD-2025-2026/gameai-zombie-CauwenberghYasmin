@@ -7,13 +7,13 @@ public class CauwenberghYasminZombieRuntime : ModuleRules
 	public CauwenberghYasminZombieRuntime(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-		string gameSourcePath = Path.Combine(ModuleDirectory, "../../../Source/GameAI_Zombie");
+		string gameSourcePath = Path.Combine(ModuleDirectory, "../../../../Source/GameAI_Zombie");
 		
 		
 		PublicIncludePaths.AddRange(
 			new string[] {
-				"GameAI_Zombie", //test this if it works
-				gameSourcePath
+				gameSourcePath,
+				"GameAI_Zombie" //test this if it works
 				// ... add public include paths required here ...
 			}
 			);
