@@ -82,6 +82,16 @@ void UStudentPerceptor::OnPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 	if (!blackBoard) return;
 	
 	
+	
+	FAISenseID DamageSenseID = UAISense::GetSenseID<UAISense_Damage>();
+	if (Stimulus.WasSuccessfullySensed() && Stimulus.Type == DamageSenseID)
+	{
+		GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Red, 
+FString::Printf(TEXT("Sensing Damage")));
+	}
+	
+	
+	
 	//check what was sensed/what sense it used!!
 	//-> then update the black board (?), some other model will do the decision making!
 	if (Stimulus.WasSuccessfullySensed())												//WILL DO ALL THE SENSING HERE 
