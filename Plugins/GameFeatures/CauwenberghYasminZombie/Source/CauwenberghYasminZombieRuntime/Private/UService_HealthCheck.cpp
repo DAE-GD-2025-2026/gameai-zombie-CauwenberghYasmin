@@ -13,9 +13,8 @@
 UUService_HealthCheck::UUService_HealthCheck()
 {
 	NodeName = TEXT("Check Health Service");
-	bNotifyTick = true; // IMPORTANT: This tells the service to run TickNode
+	bNotifyTick = true; 
 	
-	//set blackboard variable to max health
 }
 
 void UUService_HealthCheck::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
@@ -24,20 +23,31 @@ void UUService_HealthCheck::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* N
 
 	AAIController* AIController = OwnerComp.GetAIOwner();
 	ASurvivorPawn* survivor = Cast<ASurvivorPawn>(AIController->GetPawn());
-	UBlackboardComponent* Blackboard = OwnerComp.GetBlackboardComponent();
+	UBlackboardComponent* blackBoard = OwnerComp.GetBlackboardComponent();
 	
+	
+	if (firstTick)
+	{
+		ASurvivorAccessor* survivorAcc = static_cast<ASurvivorAccessor*>(survivor);
+		blackBoard->SetValueAsInt(FName("CurrentHealth"), survivorAcc->GetHealthComp()->GetMaxHealth());
+		firstTick = false;
+	}
 
+	
 	if (survivor)
 	{
 		ASurvivorAccessor* survivorAcc = static_cast<ASurvivorAccessor*>(survivor);
 		int CurrentHealth = survivorAcc->GetHealthComp()->GetHealth();
 		
-		//get variable
-		//if smaller
-		//set bool
-		Blackboard->SetValueAsFloat(FName("CurrentHealth"), CurrentHealth);
+		if (CurrentHealth < blackBoard->GetValueAsInt(FName("CurrentHealth"))) //damaged
+		{
+			blackBoard->SetValueAsInt(FName("CurrentHealth"), CurrentHealth);
+			blackBoard->SetValueAsBool(FName("TookDamage"), true);
+		}
+		else if (CurrentHealth > blackBoard->GetValueAsInt(FName("CurrentHealth"))) //healed (medkit)
+		{
+			blackBoard->SetValueAsInt(FName("CurrentHealth"), CurrentHealth);
+		}
 		
-		//else if bigger
-		//only reset the value, dont set the bool!
 	}
 }

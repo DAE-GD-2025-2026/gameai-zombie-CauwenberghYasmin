@@ -20,40 +20,7 @@ UStudentPerceptor::UStudentPerceptor()
 {
 	PrimaryComponentTick.bCanEverTick = true;
 	
-	
 	// DONT SET UP, ALREADY DONE IN SURIVOR PAWN!!
-	
-	
-	// //PerceptionComponent = CreateDefaultSubobject<UAIPerceptionComponent>(TEXT("AIPerception Component"));	//need to get!
-	// SightConfig = CreateDefaultSubobject<UAISenseConfig_Sight>(TEXT("SightConfig"));
-	// DamageConfig = CreateDefaultSubobject<UAISenseConfig_Damage>(TEXT("DamageConfig"));
-	//
-	// if (SightConfig)
-	// {
-	// 	SightConfig->SightRadius = 2000.f;
-	// 	SightConfig->LoseSightRadius = 2500.f;
-	// 	SightConfig->PeripheralVisionAngleDegrees = 60.f; // 120-degree cone total
-	// 	SightConfig->DetectionByAffiliation.bDetectEnemies = true;
-	// 	SightConfig->DetectionByAffiliation.bDetectFriendlies = true;
-	// 	SightConfig->DetectionByAffiliation.bDetectNeutrals = true;
-	//
-	// 	// Assign the configuration to the perception component
-	// 	//auto PerceptionComp = GetOwner()->GetComponentByClass<UAIPerceptionComponent>();
-	// 	//PerceptionComp->ConfigureSense(*SightConfig);
-	// 	
-	// }
-	//
-	// if (DamageConfig)
-	// {
-	// 	//DamageConfig->Set
-	// 	
-	// 	//auto PerceptionComp = GetOwner()->GetComponentByClass<UAIPerceptionComponent>();
-	// 	//PerceptionComp->ConfigureSense(*SightConfig);
-	// 	//PerceptionComp->SetDominantSense(DamageConfig->GetSenseImplementation());
-	// }
-	
-	
-	
 	
 }
 

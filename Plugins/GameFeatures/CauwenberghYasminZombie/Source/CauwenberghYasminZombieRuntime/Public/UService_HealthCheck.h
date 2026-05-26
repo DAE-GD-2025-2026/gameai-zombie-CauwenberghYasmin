@@ -18,7 +18,7 @@ public:
 	UUService_HealthCheck();
 	virtual void TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override; 
 
-
+	bool firstTick = true;
 
 
 	
