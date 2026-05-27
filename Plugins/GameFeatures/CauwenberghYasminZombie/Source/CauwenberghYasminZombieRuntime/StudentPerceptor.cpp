@@ -98,6 +98,7 @@ FString::Printf(TEXT("Sensing Damage")));
 		
 		if (AHouse* SensedHouse = Cast<AHouse>(Actor)) //house
 		{
+			//if house not in list visitedHouses!! TODO: this!
 			blackBoard->SetValueAsObject(FName("TargetHouse"), SensedHouse);
 		}
 	}
