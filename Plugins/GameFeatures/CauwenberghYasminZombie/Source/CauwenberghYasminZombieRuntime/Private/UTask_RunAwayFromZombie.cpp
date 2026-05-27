@@ -17,8 +17,8 @@ EBTNodeResult::Type UUTask_RunAwayFromZombie ::ExecuteTask(UBehaviorTreeComponen
 	AAIController* AIController = OwnerComponent.GetAIOwner();
 	if (!AIController) return EBTNodeResult::Failed;
 
-	ASurvivorPawn* Survivor = Cast<ASurvivorPawn>(AIController->GetPawn());
-	if (!Survivor) return EBTNodeResult::Failed;
+	ASurvivorPawn* survivor = Cast<ASurvivorPawn>(AIController->GetPawn());
+	if (!survivor) return EBTNodeResult::Failed;
 	
 	UBlackboardComponent* Blackboard = OwnerComponent.GetBlackboardComponent();
 	if (!Blackboard) return EBTNodeResult::Failed;
@@ -29,19 +29,19 @@ EBTNodeResult::Type UUTask_RunAwayFromZombie ::ExecuteTask(UBehaviorTreeComponen
 	if (!Zombie) return EBTNodeResult::Failed; //security, but there should always be a zombie target (goes thorugh decorator)
 
 
-	FVector playerLocation = Survivor->GetActorLocation();
+	FVector playerLocation = survivor->GetActorLocation();
 	FVector zombieLocaion = Zombie->GetActorLocation();
 	FVector direction = (playerLocation - zombieLocaion).GetSafeNormal();
     
 	//target to run towards
-	FVector EscapeTargetLocation = playerLocation + (direction * 1900.0f);
+	FVector escapeGoal = playerLocation + (direction * 1900.0f);
 	
-	TArray<FVector> PathPoints = Survivor->CalculatePath(EscapeTargetLocation); //BLESSS
+	TArray<FVector> pathPoints = survivor->CalculatePath(escapeGoal); //BLESSS
 	
-	if (PathPoints.Num() != 0)
+	if (pathPoints.Num() != 0)
 	{
-		Survivor->StartRunning();
-		AIController->MoveToLocation(PathPoints[1], 50.0f, false, true, true, true, 0, true);
+		survivor->StartRunning();
+		AIController->MoveToLocation(pathPoints[1], 50.0f, false, true, true, true, 0, true);
 		return EBTNodeResult::Succeeded; 
 		
 	}
