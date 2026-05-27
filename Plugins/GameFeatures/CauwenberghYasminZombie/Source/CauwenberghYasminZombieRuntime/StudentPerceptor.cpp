@@ -79,27 +79,32 @@ FString::Printf(TEXT("Sensing Damage")));
 		if (AFood* SensedFood = Cast<AFood>(Actor))
 		{
 			blackBoard->SetValueAsObject(FName("TargetFood"), SensedFood);
+			blackBoard->SetValueAsObject(FName("TargetItem"), SensedFood);
 		}
 		
 		if (AMedkit* SensedMedkit = Cast<AMedkit>(Actor))
 		{
 			blackBoard->SetValueAsObject(FName("TargetMedkit"), SensedMedkit);
+			blackBoard->SetValueAsObject(FName("TargetItem"), SensedMedkit);
 		}
 		
 		if (APistol* SensedPistol = Cast<APistol>(Actor))//pistol
 		{
 			blackBoard->SetValueAsObject(FName("TargetPistol"), SensedPistol);
+			blackBoard->SetValueAsObject(FName("TargetItem"), SensedPistol);
 		}
 		
 		if (AShotgun* SensedShotGun = Cast<AShotgun>(Actor))//shotgun
 		{
 			blackBoard->SetValueAsObject(FName("TargetShotgun"), SensedShotGun);
+			blackBoard->SetValueAsObject(FName("TargetItem"), SensedShotGun);
 		}
 		
 		if (AHouse* SensedHouse = Cast<AHouse>(Actor)) //house
 		{
 			//if house not in list visitedHouses!! TODO: this!
 			blackBoard->SetValueAsObject(FName("TargetHouse"), SensedHouse);
+			blackBoard->SetValueAsObject(FName("TargetItem"), SensedHouse);
 		}
 	}
 	
