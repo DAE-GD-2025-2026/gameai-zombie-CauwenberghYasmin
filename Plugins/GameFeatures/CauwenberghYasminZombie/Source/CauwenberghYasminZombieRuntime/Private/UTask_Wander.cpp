@@ -41,8 +41,8 @@ EBTNodeResult::Type UUTask_Wander ::ExecuteTask(UBehaviorTreeComponent& OwnerCom
 		return EBTNodeResult::Succeeded; 
 	}
 	
-	GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Green, 
-FString::Printf(TEXT("Wandering failed")));
+// 	GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Green, 
+// FString::Printf(TEXT("Wandering failed")));
 	return EBTNodeResult::Failed;
 	
 }

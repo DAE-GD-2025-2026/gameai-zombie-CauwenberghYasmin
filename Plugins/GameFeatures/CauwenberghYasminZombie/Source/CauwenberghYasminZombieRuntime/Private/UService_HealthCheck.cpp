@@ -4,7 +4,7 @@
 #include "UService_HealthCheck.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Survivor/SurvivorPawn.h" // Your pawn class
+#include "Survivor/SurvivorPawn.h" 
 #include "Common/HealthComponent.h"
 #include "SurvivorAccessor.h"
 

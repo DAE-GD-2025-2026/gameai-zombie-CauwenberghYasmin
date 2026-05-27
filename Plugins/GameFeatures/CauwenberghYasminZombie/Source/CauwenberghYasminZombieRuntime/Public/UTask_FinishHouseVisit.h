@@ -13,5 +13,6 @@ UCLASS()
 class CAUWENBERGHYASMINZOMBIERUNTIME_API UUTask_FinishHouseVisit : public UBTTaskNode
 {
 	GENERATED_BODY()
-	
+	UUTask_FinishHouseVisit(); 
+	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& root, uint8* nodeMemory) override;
 };

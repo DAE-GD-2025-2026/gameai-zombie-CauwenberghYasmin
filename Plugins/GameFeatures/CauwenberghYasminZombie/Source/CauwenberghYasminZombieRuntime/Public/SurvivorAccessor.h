@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Survivor/SurvivorPawn.h"
+#include "Village/House/House.h"
 
 //NO CREATED INSTANCE!
 class ASurvivorAccessor : public ASurvivorPawn
@@ -17,4 +18,5 @@ public:
 	UFloatingPawnMovement* GetMovementComp() const { return FloatingPawnMovement; }
 	UAIPerceptionComponent* GetPerceptionComp() const { return PerceptionComp; }
 	
+	TArray<AHouse*> visitedHouses{};
 };
