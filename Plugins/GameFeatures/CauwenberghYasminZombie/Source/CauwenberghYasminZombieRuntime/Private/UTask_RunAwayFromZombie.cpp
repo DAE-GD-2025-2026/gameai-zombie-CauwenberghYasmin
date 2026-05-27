@@ -34,7 +34,7 @@ EBTNodeResult::Type UUTask_RunAwayFromZombie ::ExecuteTask(UBehaviorTreeComponen
 	FVector direction = (playerLocation - zombieLocaion).GetSafeNormal();
     
 	//target to run towards
-	FVector EscapeTargetLocation = playerLocation + (direction * 1500.0f);
+	FVector EscapeTargetLocation = playerLocation + (direction * 1900.0f);
 	
 	TArray<FVector> PathPoints = Survivor->CalculatePath(EscapeTargetLocation); //BLESSS
 	
