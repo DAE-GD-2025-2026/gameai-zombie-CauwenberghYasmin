@@ -24,19 +24,26 @@ EBTNodeResult::Type UUTask_PickUpItem ::ExecuteTask(UBehaviorTreeComponent& Owne
 	if (!blackboard) return EBTNodeResult::Failed;
 	
 	ABaseItem* item = Cast<ABaseItem>(blackboard->GetValueAsObject("TargetItem"));
+	const TArray<ABaseItem*>& CurrentItems = survivor->GetComponentByClass<UInventoryComponent>()->GetInventory();
+	int TargetFreeSlot = -1;
 	
-	int currSlot = blackboard->GetValueAsInt("currentSlotInventory");
-	
-	
-	if ( /*item->GetItemType() != EItemType::Garbage || */  currSlot <= 4 )
+	for (int i = 0; i < CurrentItems.Num(); ++i)
 	{
-		if (currSlot <= 0) currSlot = 0;
-		
-		survivor->GetComponentByClass<UInventoryComponent>()->GrabItem(currSlot, item);
-		blackboard->SetValueAsInt("currentSlotInventory", (currSlot+1));	
-		
-		
-		//make this switch case!
+		if (CurrentItems[i] == nullptr)
+		{
+			TargetFreeSlot = i;
+			break; 
+		}
+	}
+	
+	if (TargetFreeSlot == -1) //inventory full
+	{
+		return EBTNodeResult::Failed;
+	}
+	
+
+	if (survivor->GetComponentByClass<UInventoryComponent>()->GrabItem(TargetFreeSlot, item))
+	{
 		if (item->GetItemType()== EItemType::Pistol || item->GetItemType() == EItemType::Shotgun)
 		{
 			blackboard->SetValueAsInt("HasWeapon", true);
@@ -49,11 +56,8 @@ EBTNodeResult::Type UUTask_PickUpItem ::ExecuteTask(UBehaviorTreeComponent& Owne
 		{
 			blackboard->SetValueAsInt("HasMedKit", true);
 		}
-		
 		return EBTNodeResult::Succeeded;
 	}
-
 	
-	//garbage, dont pick up but still succeed!
 	return EBTNodeResult::Succeeded;
 }
