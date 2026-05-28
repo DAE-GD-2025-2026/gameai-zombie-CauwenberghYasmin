@@ -12,7 +12,7 @@
 UUDecorator_NeedsToEatFood::UUDecorator_NeedsToEatFood()
 {
 	NodeName = TEXT("Need To Use Resources");
-	BoolKeySelector.AddBoolFilter(this, GET_MEMBER_NAME_CHECKED(UUDecorator_NeedsToTakeMedKit, BoolKeySelector));
+	BoolKeySelector.AddBoolFilter(this, GET_MEMBER_NAME_CHECKED(UUDecorator_NeedsToEatFood, BoolKeySelector));
 }
 
 bool UUDecorator_NeedsToEatFood::CalculateRawConditionValue(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) const
