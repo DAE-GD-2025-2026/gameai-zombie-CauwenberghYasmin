@@ -13,5 +13,6 @@ UCLASS()
 class CAUWENBERGHYASMINZOMBIERUNTIME_API UUTask_PickUpItem : public UBTTaskNode
 {
 	GENERATED_BODY()
-	
+	UUTask_PickUpItem();
+	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& root, uint8* nodeMemory) override;
 };

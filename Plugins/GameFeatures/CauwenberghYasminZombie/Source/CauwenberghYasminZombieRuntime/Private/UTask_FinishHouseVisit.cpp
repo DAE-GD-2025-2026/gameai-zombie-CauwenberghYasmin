@@ -5,12 +5,13 @@
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Survivor/SurvivorPawn.h"
-#include "SurvivorAccessor.h"
 #include "Village/House/House.h"
+#include "UDecorator_HasHouseBeenVisited.h"
+#include "UKey_HouseArray.h"
 
 UUTask_FinishHouseVisit::UUTask_FinishHouseVisit()
 {
-	NodeName = "Finished Visiting House";
+	NodeName = "Mark house as visited";
 }
 
 EBTNodeResult::Type UUTask_FinishHouseVisit ::ExecuteTask(UBehaviorTreeComponent& OwnerComponent, uint8* TaskMemory)
@@ -24,10 +25,12 @@ EBTNodeResult::Type UUTask_FinishHouseVisit ::ExecuteTask(UBehaviorTreeComponent
 	UBlackboardComponent* blackboard = OwnerComponent.GetBlackboardComponent();
 	if (!blackboard) return EBTNodeResult::Failed;
 	
-	ASurvivorAccessor* survivorAcc = static_cast<ASurvivorAccessor*>(survivor);
 	
-	survivorAcc->visitedHouses.Add( Cast<AHouse>(blackboard->GetValueAsObject(FName("TargetHouse"))));
+	UObject* temp = blackboard->GetValueAsObject("VisitedHousesList");
+	UUKey_HouseArray* HouseListWrapper = Cast<UUKey_HouseArray>(temp);
+    HouseListWrapper->VisitedHouses.Add( Cast<AHouse>(blackboard->GetValueAsObject(FName("TargetHouse"))));
 	blackboard->SetValueAsObject(FName("TargetHouse"), nullptr);
 	
 	return EBTNodeResult::Succeeded;
 }
+

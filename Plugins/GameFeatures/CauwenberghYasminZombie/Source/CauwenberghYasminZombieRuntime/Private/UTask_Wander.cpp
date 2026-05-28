@@ -42,6 +42,7 @@ EBTNodeResult::Type UUTask_Wander ::ExecuteTask(UBehaviorTreeComponent& OwnerCom
 
     FNavLocation ProjectedLocation;
     bool bFoundValidSpot = NavSys->ProjectPointToNavigation(rawGoalLocation, ProjectedLocation, FVector(200.f, 200.f, 200.f));
+	survivor->StopRunning();
 
     if (bFoundValidSpot)
     {

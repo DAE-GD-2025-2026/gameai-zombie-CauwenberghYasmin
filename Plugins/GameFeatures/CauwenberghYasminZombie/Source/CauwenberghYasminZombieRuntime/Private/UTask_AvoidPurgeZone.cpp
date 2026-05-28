@@ -42,7 +42,6 @@ EBTNodeResult::Type UUTask_AvoidPurgeZone ::ExecuteTask(UBehaviorTreeComponent& 
 	
 	if (PathPoints.Num() != 0)
 	{
-		Survivor->StartRunning();
 		AIController->MoveToLocation(PathPoints[1], 50.0f, false, true, true, true, 0, true);
 		return EBTNodeResult::Succeeded; 
 		

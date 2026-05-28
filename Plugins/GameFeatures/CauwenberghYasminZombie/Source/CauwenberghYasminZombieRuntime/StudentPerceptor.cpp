@@ -36,9 +36,6 @@ void UStudentPerceptor::BeginPlay()
 
 void UStudentPerceptor::OnPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 {
-	GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Green, 
-	FString::Printf(TEXT("Saw Something!")));
-	
 	APawn* OwnerPawn = Cast<APawn>(GetOwner());
 	if (!OwnerPawn) return;
 	
@@ -66,11 +63,15 @@ FString::Printf(TEXT("Sensing Damage")));
 		if (APurgeZone * sensedPurgeZone = Cast<APurgeZone>(Actor))
 		{
 			blackBoard->SetValueAsObject(FName("TargetPurgeZone"),sensedPurgeZone);
+			GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Green, 
+	FString::Printf(TEXT("Saw purge!")));
 		}
 		
 		if ( ABaseZombie * SensedZombie = Cast<ABaseZombie>(Actor))
 		{
 			//SensedZombie->zombietype
+			GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Green, 
+	FString::Printf(TEXT("Saw zombie!")));
 			blackBoard->SetValueAsObject(FName("TargetZombie"), SensedZombie); //if more than one zombie, pick shotgun (more bullets)
 		}
 	
@@ -80,31 +81,40 @@ FString::Printf(TEXT("Sensing Damage")));
 		{
 			blackBoard->SetValueAsObject(FName("TargetFood"), SensedFood);
 			blackBoard->SetValueAsObject(FName("TargetItem"), SensedFood);
+			GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Green, 
+	FString::Printf(TEXT("Saw food!")));
 		}
 		
 		if (AMedkit* SensedMedkit = Cast<AMedkit>(Actor))
 		{
 			blackBoard->SetValueAsObject(FName("TargetMedkit"), SensedMedkit);
 			blackBoard->SetValueAsObject(FName("TargetItem"), SensedMedkit);
+			GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Green, 
+	FString::Printf(TEXT("Saw Medkit!")));
 		}
 		
 		if (APistol* SensedPistol = Cast<APistol>(Actor))//pistol
 		{
 			blackBoard->SetValueAsObject(FName("TargetPistol"), SensedPistol);
 			blackBoard->SetValueAsObject(FName("TargetItem"), SensedPistol);
+			GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Green, 
+	FString::Printf(TEXT("Saw pistol!")));
 		}
 		
 		if (AShotgun* SensedShotGun = Cast<AShotgun>(Actor))//shotgun
 		{
 			blackBoard->SetValueAsObject(FName("TargetShotgun"), SensedShotGun);
 			blackBoard->SetValueAsObject(FName("TargetItem"), SensedShotGun);
+			GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Green, 
+	FString::Printf(TEXT("Saw shotgun!")));
 		}
 		
 		if (AHouse* SensedHouse = Cast<AHouse>(Actor)) //house
 		{
 			//if house not in list visitedHouses!! TODO: this!
 			blackBoard->SetValueAsObject(FName("TargetHouse"), SensedHouse);
-			blackBoard->SetValueAsObject(FName("TargetItem"), SensedHouse);
+			GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Green, 
+	FString::Printf(TEXT("Saw house!")));
 		}
 	}
 	

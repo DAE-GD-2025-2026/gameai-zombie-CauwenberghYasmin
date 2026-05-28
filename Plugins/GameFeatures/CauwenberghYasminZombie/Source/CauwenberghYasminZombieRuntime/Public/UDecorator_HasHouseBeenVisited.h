@@ -12,9 +12,9 @@
 UCLASS()
 class CAUWENBERGHYASMINZOMBIERUNTIME_API UUDecorator_HasHouseBeenVisited : public UBTDecorator
 {
+public:
 	GENERATED_BODY()
 	UUDecorator_HasHouseBeenVisited();
 	
 	virtual bool CalculateRawConditionValue(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) const override;
-	
 };

@@ -9,10 +9,10 @@
 
 UUTask_CheckForZombie::UUTask_CheckForZombie()
 {
-	NodeName = "Check For Zombies";
+	NodeName = "Scan Around";
 	
 	bNotifyTick = true; //task gets to tick every frame :D
-	RotationSpeed = 380.0f;
+	RotationSpeed = 480.0f;
 	DegreesSpun = 0.0f;
 }
 
@@ -42,7 +42,7 @@ void UUTask_CheckForZombie::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* N
 	Survivor->AddActorWorldRotation(FRotator(0.0f, DegreesToRotateThisFrame, 0.0f));
 	DegreesSpun += DegreesToRotateThisFrame;
 	
-	if (DegreesSpun >= 180.0f)
+	if (DegreesSpun >= 360.0f)
 	{
 		FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded); //after succeed the task will stop so no infinte spin :>
 	}

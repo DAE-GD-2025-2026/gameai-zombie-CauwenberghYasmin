@@ -6,7 +6,7 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Survivor/SurvivorPawn.h" 
 #include "Common/HealthComponent.h"
-#include "SurvivorAccessor.h"
+
 
 
 
@@ -25,19 +25,18 @@ void UUService_HealthCheck::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* N
 	ASurvivorPawn* survivor = Cast<ASurvivorPawn>(AIController->GetPawn());
 	UBlackboardComponent* blackBoard = OwnerComp.GetBlackboardComponent();
 	
+	UHealthComponent * healthComp = survivor->GetComponentByClass<UHealthComponent>();
 	
 	if (firstTick)
 	{
-		ASurvivorAccessor* survivorAcc = static_cast<ASurvivorAccessor*>(survivor);
-		blackBoard->SetValueAsInt(FName("CurrentHealth"), survivorAcc->GetHealthComp()->GetMaxHealth());
+		blackBoard->SetValueAsInt(FName("CurrentHealth"), healthComp->GetMaxHealth());
 		firstTick = false;
 	}
 
 	
 	if (survivor)
 	{
-		ASurvivorAccessor* survivorAcc = static_cast<ASurvivorAccessor*>(survivor);
-		int CurrentHealth = survivorAcc->GetHealthComp()->GetHealth();
+		int CurrentHealth = healthComp->GetHealth();
 		
 		if (CurrentHealth < blackBoard->GetValueAsInt(FName("CurrentHealth"))) //damaged
 		{
