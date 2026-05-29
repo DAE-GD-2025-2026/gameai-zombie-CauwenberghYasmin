@@ -23,6 +23,8 @@ bool UUDecorator_NeedsToTakeMedKit::CalculateRawConditionValue(UBehaviorTreeComp
 	
 	if (!boolean)
 	{
+		GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Green, 
+	FString::Printf(TEXT("has med is false")));
 		return false;
 	}
 	
@@ -30,9 +32,16 @@ bool UUDecorator_NeedsToTakeMedKit::CalculateRawConditionValue(UBehaviorTreeComp
 	ASurvivorPawn* survivor = Cast<ASurvivorPawn>(AIController->GetPawn());
 	
 	UHealthComponent* healthComp = survivor->GetComponentByClass<UHealthComponent>();
-	if (healthComp->GetHealth() < (healthComp->GetMaxHealth() * 0.4f) )
+	if (healthComp->GetHealth() < 4) //(healthComp->GetMaxHealth() * 0.4f) )
 	{
+		GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Green, 
+	FString::Printf(TEXT("needs medkit")));
 		return true;
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Green, 
+	FString::Printf(TEXT("doesnt need medkit")));
 	}
 	
 	return false;

@@ -38,6 +38,7 @@ EBTNodeResult::Type UUTask_PickUpItem ::ExecuteTask(UBehaviorTreeComponent& Owne
 	
 	if (TargetFreeSlot == -1) //inventory full
 	{
+		blackboard->ClearValue("TargetItem");
 		return EBTNodeResult::Failed;
 	}
 	
@@ -46,15 +47,15 @@ EBTNodeResult::Type UUTask_PickUpItem ::ExecuteTask(UBehaviorTreeComponent& Owne
 	{
 		if (item->GetItemType()== EItemType::Pistol || item->GetItemType() == EItemType::Shotgun)
 		{
-			blackboard->SetValueAsInt("HasWeapon", true);
+			blackboard->SetValueAsBool("HasWeapon", true);
 		}
 		else if (item->GetItemType()== EItemType::Food)
 		{
-			blackboard->SetValueAsInt("HasFood", true);
+			blackboard->SetValueAsBool("HasFood", true);
 		}
 		else if (item->GetItemType()== EItemType::Medkit)
 		{
-			blackboard->SetValueAsInt("HasMedKit", true);
+			blackboard->SetValueAsBool("HasMedKit", true);
 		}
 		return EBTNodeResult::Succeeded;
 	}

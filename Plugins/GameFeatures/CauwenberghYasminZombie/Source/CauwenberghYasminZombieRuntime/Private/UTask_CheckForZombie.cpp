@@ -12,7 +12,7 @@ UUTask_CheckForZombie::UUTask_CheckForZombie()
 	NodeName = "Scan Around";
 	
 	bNotifyTick = true; //task gets to tick every frame :D
-	RotationSpeed = 480.0f;
+	RotationSpeed = 780.0f;
 	DegreesSpun = 0.0f;
 }
 
@@ -37,6 +37,7 @@ void UUTask_CheckForZombie::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* N
 		FinishLatentTask(OwnerComp, EBTNodeResult::Failed);
 		return;
 	}
+	AIController->StopMovement(); //from the switch from wander
 	
 	float DegreesToRotateThisFrame = RotationSpeed * DeltaSeconds;
 	Survivor->AddActorWorldRotation(FRotator(0.0f, DegreesToRotateThisFrame, 0.0f));

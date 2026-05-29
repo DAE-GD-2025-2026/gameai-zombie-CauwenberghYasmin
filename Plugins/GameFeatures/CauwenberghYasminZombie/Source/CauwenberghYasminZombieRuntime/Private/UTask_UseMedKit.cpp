@@ -23,7 +23,7 @@ EBTNodeResult::Type UUTask_UseMedKit ::ExecuteTask(UBehaviorTreeComponent& Owner
 	if (!survivor) return EBTNodeResult::Failed;
 	
 	UInventoryComponent* InventoryComponent = survivor->GetComponentByClass<UInventoryComponent>();
-	
+	UBlackboardComponent* blackBoard = OwnerComponent.GetBlackboardComponent();
 	
 	const TArray<ABaseItem*>& CurrentItems = InventoryComponent->GetInventory();
 	int SlotToUse = -1;
@@ -44,5 +44,6 @@ EBTNodeResult::Type UUTask_UseMedKit ::ExecuteTask(UBehaviorTreeComponent& Owner
 		return EBTNodeResult::Succeeded;
 	}
 	
+	blackBoard->ClearValue("TargetMedKit");
 	return EBTNodeResult::Failed;
 }

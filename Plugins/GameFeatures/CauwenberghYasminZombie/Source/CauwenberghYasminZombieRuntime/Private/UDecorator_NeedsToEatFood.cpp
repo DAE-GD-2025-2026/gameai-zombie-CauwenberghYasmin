@@ -23,6 +23,8 @@ bool UUDecorator_NeedsToEatFood::CalculateRawConditionValue(UBehaviorTreeCompone
 	
 	if (!boolean)
 	{
+		GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Green, 
+	FString::Printf(TEXT("has food is false")));
 		return false;
 	}
 	
@@ -30,9 +32,16 @@ bool UUDecorator_NeedsToEatFood::CalculateRawConditionValue(UBehaviorTreeCompone
 	ASurvivorPawn* survivor = Cast<ASurvivorPawn>(AIController->GetPawn());
 	
 	UStaminaComponent* StamicaComp = survivor->GetComponentByClass<UStaminaComponent>();
-	if (StamicaComp->GetCurrentStamina() < (StamicaComp->GetMaxStamina() * 0.4f) )
+	if (StamicaComp->GetCurrentStamina() < 4) //(StamicaComp->GetMaxStamina() * 0.4f) )
 	{
+		GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Green, 
+	FString::Printf(TEXT("needs food")));
 		return true;
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(5, 1.f, FColor::Green, 
+	FString::Printf(TEXT("stamine high enough")));
 	}
 	
 	return false;

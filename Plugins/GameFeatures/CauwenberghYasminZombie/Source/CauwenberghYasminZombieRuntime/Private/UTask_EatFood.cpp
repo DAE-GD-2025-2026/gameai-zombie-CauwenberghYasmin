@@ -21,7 +21,7 @@ EBTNodeResult::Type UUTask_EatFood ::ExecuteTask(UBehaviorTreeComponent& OwnerCo
 
 	ASurvivorPawn* survivor = Cast<ASurvivorPawn>(AIController->GetPawn());
 	if (!survivor) return EBTNodeResult::Failed;
-	
+	UBlackboardComponent* blackBoard = OwnerComponent.GetBlackboardComponent();
 	UInventoryComponent* InventoryComponent = survivor->GetComponentByClass<UInventoryComponent>();
 	
 	
@@ -44,5 +44,6 @@ EBTNodeResult::Type UUTask_EatFood ::ExecuteTask(UBehaviorTreeComponent& OwnerCo
 		return EBTNodeResult::Succeeded;
 	}
 	
+	blackBoard->ClearValue("TargetFood");
 	return EBTNodeResult::Failed;
 }
